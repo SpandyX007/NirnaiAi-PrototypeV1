@@ -30,14 +30,15 @@ import {
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import HomePage from '@/pages/HomePage';
-import RightsPage from '@/pages/RightsPage';
+//import RightsPage from '@/pages/RightsPage';
 import DocumentsPage from '@/pages/DocumentsPage';
 import HelpPage from '@/pages/HelpPage';
 import ContactPage from '@/pages/ContactPage';
-import CaseSearchPage from '@/pages/SearchPage';
+//import CaseSearchPage from '@/pages/SearchPage';
 import LoginPage from '@/pages/LoginPage';
 import SignupPage from '@/pages/SignupPage';
 import NirnaiaiPage from '@/pages/NirnaiaiPage';
+import CaseSearchPageTiwari from '@/pages/SearchPageTiwari';
 
 // Search Bar
 const Search = styled('div')(({ theme }) => ({
@@ -327,7 +328,7 @@ function MainLayout() {
             <Route path="/my-learning" element={<DocumentsPage />} />
             <Route path="/help" element={<HelpPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/search" element={<CaseSearchPage />} />
+            <Route path="/search" element={<CaseSearchPageTiwari />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
           </Routes>
