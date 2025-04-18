@@ -25,20 +25,22 @@ import {
   Gavel as GavelIcon,
   Person as PersonIcon,
   PersonAdd as PersonAddIcon,
-  Search as SearchIcon
+  Search as SearchIcon,
+  Group
 } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import HomePage from '@/pages/HomePage';
 //import RightsPage from '@/pages/RightsPage';
-import DocumentsPage from '@/pages/DocumentsPage';
 import HelpPage from '@/pages/HelpPage';
 import ContactPage from '@/pages/ContactPage';
 //import CaseSearchPage from '@/pages/SearchPage';
 import LoginPage from '@/pages/LoginPage';
 import SignupPage from '@/pages/SignupPage';
 import NirnaiaiPage from '@/pages/NirnaiaiPage';
-import CaseSearchPageTiwari from '@/pages/SearchPageTiwari';
+import AboutUsPage from '@/pages/AboutUsPage';
+import CaseSearchPagetiwarifinal from '@/pages/SearchPagetiwarifinal';
+import MyLearningQuizApp from '@/pages/MylearningPage';
 
 // Search Bar
 const Search = styled('div')(({ theme }) => ({
@@ -108,9 +110,9 @@ const navigationItems = [
     icon: <SearchIcon />
   },
   { 
-    id: 'nirnai-ai',
-    path: '/nirnai-ai',
-    label: 'Nirnai AI',
+    id: 'nirnay-ai',
+    path: '/nirnay-ai',
+    label: 'Nirnay AI',
     icon: <GavelIcon />
   },
   { 
@@ -131,6 +133,12 @@ const navigationItems = [
     label: 'Contact',
     icon: <ContactIcon />
   },
+  { 
+    id: 'about',
+    path: '/about-us',
+    label: 'About Us',
+    icon: <Group />
+  }
 ];
 
 // Main App Layout Component
@@ -258,18 +266,18 @@ function MainLayout() {
             </Button></Link>
             
             {/* Icons only on mobile */}
-            <Button 
+            <Link to={"/login"}><Button 
               color="inherit"
               sx={{ display: { xs: 'block', sm: 'none' } }}
             >
               <PersonIcon />
-            </Button>
-            <Button 
+            </Button></Link>
+            <Link to={"/signup"}><Button 
               color="inherit"
               sx={{ display: { xs: 'block', sm: 'none' } }}
             >
               <PersonAddIcon />
-            </Button>
+            </Button></Link>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -324,13 +332,14 @@ function MainLayout() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             {/* <Route path="/rights" element={<RightsPage />} /> */}
-            <Route path="/nirnai-ai" element={<NirnaiaiPage />} />
-            <Route path="/my-learning" element={<DocumentsPage />} />
+            <Route path="/nirnay-ai" element={<NirnaiaiPage />} />
+            <Route path="/my-learning" element={<MyLearningQuizApp />} />
             <Route path="/help" element={<HelpPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/search" element={<CaseSearchPageTiwari />} />
+            <Route path="/search" element={<CaseSearchPagetiwarifinal />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
           </Routes>
         </Container>
       </Box>

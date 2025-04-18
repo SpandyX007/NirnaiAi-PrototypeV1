@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div>
         <Typography variant="h4" gutterBottom>
-          Welcome to Nirnai.Ai
+          Welcome to Nirnay.Ai
         </Typography>
         <Typography variant="body1" paragraph>
           We help you understand your legal rights and access legal resources. This simple tool 

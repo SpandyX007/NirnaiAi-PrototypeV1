@@ -57,6 +57,43 @@ def search_cases():
         return jsonify([serialize_case(case) for case in results])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/cases/details/<string:citation>", methods=["GET"])
+def get_case_details(citation):
+    try:
+        normalized_citation = citation.replace("%20", " ")
+        case = db["casess"].find_one({"citation": normalized_citation})
+        if not case:
+            return jsonify({"error": "Case not found"}), 404
+        case["_id"] = str(case["_id"])  # Convert ObjectId to string
+        return jsonify({
+            "citation": case.get("citation", ""),
+            "petitioner": case.get("petitioner", ""),
+            "respondent": case.get("respondent", ""),
+            "date_of_judgment": case.get("date_of_judgment", ""),
+            "court": case.get("court", ""),
+            "bench": case.get("bench", ""),
+            "judgment": case.get("judgment", "No judgment available")
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/cases/fields", methods=["GET"])
+def get_random_document():
+    try:
+        # Fetch a random document from the collection
+        sample_document = collection.aggregate([{"$sample": {"size": 1}}])
+        random_document = next(sample_document, None)
+        
+        if not random_document:
+            return jsonify({"error": "No documents found in the collection"}), 404
+
+        # Convert ObjectId to string for JSON serialization
+        random_document["_id"] = str(random_document["_id"])
+        return jsonify(random_document)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
